@@ -41,6 +41,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
 ```js
 src/firebase/config.js
+```
 
 ## ▶️ Lancer le projet en local
 
