@@ -117,18 +117,18 @@ Done
 
 ### Page d’authentification
 
-![Page d’authentification](./assets/authentication.png)
+![Page d’authentification](./src/assets/authentication.png)
 
 ---
 
 ### Dashboard
 
-![Dashboard](./assets/dashboard.png)
+![Dashboard](./src/assets/dashboard.png)
 
 ---
 
 ### Page des tâches
 
-![Page des tâches](./assets/tasks.png)
+![Page des tâches](./src/assets/tasks.png)
 
 
