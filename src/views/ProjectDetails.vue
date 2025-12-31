@@ -1,100 +1,108 @@
 <template>
- 
+
   <LoadingSpinner
     v-if="projectStore.loadingTasks && !projectStore.tasks.length"
   />
 
   <div v-else-if="project" class="container py-5">
-    <h2 class="mb-4">{{ project.name }}</h2>
+    <h2 class="mb-4 fw-bold text-center text-md-start">
+      {{ project.name }}
+    </h2>
 
-    <div class="kanban">
+    <div class="row g-3">
       <div
-        class="column"
         v-for="status in statuses"
         :key="status"
+        class="col-12 col-md-4"
         @dragover.prevent
         @drop="onDrop($event, status)"
       >
-        <h3>{{ statusLabels[status] }}</h3>
-
-        <div class="tasks-list">
-          <div
-            v-for="task in tasksByStatus(status)"
-            :key="task.id"
-            class="task-card"
-            draggable="true"
-            @dragstart="onDragStart($event, task)"
-            @dragend="onDragEnd"
-          >
-            <TaskCard
-              :task="task"
-              @status-change="changeStatus"
-              @delete-task="deleteTask"
-            />
+ 
+        <div class="card h-100 shadow-sm">
+          <div class="card-header text-center fw-semibold bg-light">
+            {{ statusLabels[status] }}
           </div>
-        </div>
 
-        <div
-          v-if="
-            !projectStore.loadingTasks &&
-            tasksByStatus(status).length === 0
-          "
-          class="empty-column"
-        >
-          <small>Aucune tâche</small>
-        </div>
+          <div class="card-body d-flex flex-column">
 
-        <button
-          class="btn btn-sm btn-primary mt-2 w-100"
-          @click="openTaskForm(status)"
-          :disabled="projectStore.loadingTasks"
-        >
-          + Ajouter tâche
-        </button>
-
-        <div v-if="showFormForStatus === status" class="mt-3">
-          <form @submit.prevent="submitTask(status)">
-            <input
-              v-model="newTask.title"
-              class="form-control mb-2"
-              placeholder="Titre de la tâche"
-              required
-            />
-
-            <textarea
-              v-model="newTask.description"
-              class="form-control mb-2"
-              rows="2"
-              placeholder="Description"
-            ></textarea>
-
-            <input
-              v-model="newTask.dueDate"
-              type="date"
-              class="form-control mb-2"
-            />
-
-            <div class="d-flex gap-2">
-              <button
-                type="submit"
-                class="btn btn-success btn-sm"
-                :disabled="projectStore.loadingTasks"
+            <div class="flex-grow-1 mb-2">
+              <div
+                v-for="task in tasksByStatus(status)"
+                :key="task.id"
+                class="mb-2"
+                draggable="true"
+                @dragstart="onDragStart($event, task)"
+                @dragend="onDragEnd"
               >
-                Ajouter
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary btn-sm"
-                @click="closeTaskForm"
+                <TaskCard
+                  :task="task"
+                  @status-change="changeStatus"
+                  @delete-task="deleteTask"
+                />
+              </div>
+
+              <div
+                v-if="!projectStore.loadingTasks && tasksByStatus(status).length === 0"
+                class="text-center text-muted fst-italic py-3"
               >
-                Annuler
-              </button>
+                Aucune tâche
+              </div>
             </div>
-          </form>
-        </div>
 
-        <div class="task-count mt-2">
-          {{ tasksByStatus(status).length }} tâche(s)
+          
+            <button
+              class="btn btn-primary btn-sm w-100 mt-2"
+              @click="openTaskForm(status)"
+              :disabled="projectStore.loadingTasks"
+            >
+              + Ajouter tâche
+            </button>
+
+            <div v-if="showFormForStatus === status" class="mt-3">
+              <form @submit.prevent="submitTask(status)">
+                <input
+                  v-model="newTask.title"
+                  class="form-control form-control-sm mb-2"
+                  placeholder="Titre"
+                  required
+                />
+
+                <textarea
+                  v-model="newTask.description"
+                  class="form-control form-control-sm mb-2"
+                  rows="2"
+                  placeholder="Description"
+                ></textarea>
+
+                <input
+                  v-model="newTask.dueDate"
+                  type="date"
+                  class="form-control form-control-sm mb-2"
+                />
+
+                <div class="d-flex gap-2">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-sm w-100"
+                  >
+                    Ajouter
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-sm w-100"
+                    @click="closeTaskForm"
+                  >
+                    Annuler
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Compteur -->
+            <div class="text-center text-muted small mt-2">
+              {{ tasksByStatus(status).length }} tâche(s)
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -104,6 +112,7 @@
     Projet introuvable
   </div>
 </template>
+
 
 
 <script setup>
@@ -226,43 +235,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.kanban {
-  display: flex;
-  gap: 20px;
-}
-
-.column {
-  flex: 1;
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  min-height: 400px;
-}
-
-.column h3 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.tasks-list {
-  min-height: 250px;
-}
-
-.empty-column {
-  text-align: center;
-  font-style: italic;
-  color: #6c757d;
-}
-
-.task-count {
-  font-size: 0.8rem;
-  text-align: center;
-  color: #6c757d;
-}
-
-@media (max-width: 992px) {
-  .kanban {
-    flex-direction: column;
-  }
+.card {
+  min-height: 450px;
 }
 </style>
+

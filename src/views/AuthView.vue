@@ -36,6 +36,14 @@ const submit = async () => {
     console.error(error)
   }
 }
+const loginWithGoogle = async () => {
+  await authStore.loginWithGoogle()
+
+  if (authStore.isAuthenticated) {
+    router.push('/dashboard')
+  }
+}
+
 </script>
 
 <template>
@@ -87,6 +95,20 @@ const submit = async () => {
             {{ isLoginMode ? 'Se connecter' : 'S’inscrire' }}
           </span>
         </button>
+        <hr class="my-3" />
+
+<button
+  class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center"
+  @click="loginWithGoogle"
+  :disabled="authStore.loading"
+>
+  <img
+    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+    width="18"
+    class="me-2"
+  />
+  Se connecter avec Google
+</button>
       </form>
 
       <div class="text-center mt-3">
