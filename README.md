@@ -1,13 +1,13 @@
 
-## 📌 Nom du projet
+##  Nom du projet
 
 **Kanban Simplifié**
 
-## 📝 Description
+##  Description
 
 Kanban Simplifié est une application web Single Page Application (SPA) développée avec Vue.js 3, conçue pour faciliter la gestion de projets et de tâches selon la méthode Kanban. Cette solution intuitive permet aux utilisateurs de créer, organiser et suivre leurs projets et tâches en temps réel.
 
-## 🛠️ Technologies utilisées
+##  Technologies utilisées
 
 - **Vue.js 3** — Framework JavaScript pour construire l’interface utilisateur.
 - **Firebase** — Backend serverless (authentification, base de données Cloud Firestore, hébergement).
@@ -20,7 +20,7 @@ L’application est **déployée en ligne** et accessible via le lien suivant :
 [https://kanban-vue-firebase-7af2d.web.app]
 ---
 
-## 🧰 Prérequis
+##  Prérequis
 
 Avant de lancer le projet, assurez-vous d’avoir installé :
 
@@ -31,7 +31,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
 ---
 
-## ⚙️ Configuration Firebase
+##  Configuration Firebase
 
 1. Créer un projet sur **Firebase Console**  
 2. Activer :  
@@ -43,7 +43,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 src/firebase/config.js
 ```
 
-## ▶️ Lancer le projet en local
+##  Lancer le projet en local
 
 ### 1️⃣ Cloner le dépôt
 
@@ -61,15 +61,15 @@ npm install
 npm run dev
 
 ```
-### 🌐 Accès à l’application
+###  Accès à l’application
 
 Une fois le serveur lancé, l’application est accessible à l’adresse :
 
 http://localhost:5173
 
-### ✅ Fonctionnement
+###  Fonctionnement
 
-## 🔐 Authentification
+##  Authentification
 
 -Inscription avec email / mot de passe
 
@@ -83,7 +83,7 @@ http://localhost:5173
 
 Protection des routes privées (Dashboard, Projets)
 
-## 📊 Dashboard
+##  Dashboard
 
 -Liste des projets de l’utilisateur connecté
 
@@ -97,7 +97,7 @@ une description
 
 une couleur personnalisée
 
-## 📌 Gestion des tâches (Kanban)
+##  Gestion des tâches (Kanban)
 
 - Tâches organisées en 3 colonnes :
 
@@ -130,5 +130,10 @@ Done
 ### Page des tâches
 
 ![Page des tâches](./src/assets/tasks.png)
+
+##  Réalisé par
+**Chayma El Houma**  
+**Sofia Bouhouch**  
+Génie Informatique & Intelligence Artificielle
 
 
